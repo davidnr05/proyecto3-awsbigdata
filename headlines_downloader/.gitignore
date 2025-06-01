@@ -1,0 +1,25 @@
+# Ignorar entorno virtual
+venv/
+
+# Archivos de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos temporales y logs
+*.log
+*.tmp
+*.swp
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de Zappa que no necesitas subir
+.zappa/
+
+# Archivos de configuración de editor
+.vscode/
+.idea/
+
