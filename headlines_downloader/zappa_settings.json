@@ -1,0 +1,16 @@
+{
+  "dev": {
+    "app_function": "app.scrape_headlines",
+    "aws_region": "us-east-1",
+    "profile_name": "default",
+    "project_name": "parcial3",
+    "runtime": "python3.10",
+    "s3_bucket": "headlinesjune",
+    "keep_warm": false,
+    "apigateway_enabled": false,
+    "manage_roles": false,
+    "role_name": "LabRole",
+
+    
+  }
+}
