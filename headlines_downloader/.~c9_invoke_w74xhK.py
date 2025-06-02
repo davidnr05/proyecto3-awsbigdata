@@ -5,7 +5,7 @@ from datetime import datetime
 def scrape_headlines(event=None, context=None):
     urls = {
         "eltiempo": "https://www.eltiempo.com/",
-        "publimetro": "https://www.publimetro.co/"
+        "elespectador": "https://www.elespectador.com/"
     }
 
     s3 = boto3.client("s3")
@@ -19,14 +19,11 @@ def scrape_headlines(event=None, context=None):
             "Chrome/114.0.0.0 Safari/537.36"
         ),
         "Accept": (
-            "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8"
-        ),
-        "Accept-Language": "es-ES,es;q=0.9",
-        "Referer": "https://www.google.com/",
-        "Connection": "keep-alive",
-        "Upgrade-Insecure-Requests": "1"
+        "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8"
+    ),
+        
+        
     }
-    
 
     for nombre, url in urls.items():
         response = requests.get(url, headers=headers, timeout=10)

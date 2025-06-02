@@ -44,7 +44,7 @@ def process_headlines(event, context):
                 enlace = titulo_tag.get("href") if titulo_tag else ""
 
                 if enlace and not enlace.startswith("http"):
-                    enlace = "https://www.elespectador.com" + enlace
+                    enlace = "https://www.publimetro.co/" + enlace
 
                 if titulo and enlace:
                     noticias.append([categoria, titulo, enlace])

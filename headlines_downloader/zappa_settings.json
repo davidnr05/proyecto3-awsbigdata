@@ -10,7 +10,20 @@
     "apigateway_enabled": false,
     "manage_roles": false,
     "role_name": "LabRole",
-
-    
+    "events": [
+      {
+        "function": "processor.process_headlines",
+        "event_source": {
+          "arn": "arn:aws:s3:::headlinesjune",
+          "events": ["s3:ObjectCreated:*"],
+          "filters": {
+            "Key": {
+              "prefix": "headlines/raw/",
+              "suffix": ".html"
+            }
+          }
+        }
+      }
+    ]
   }
 }
