@@ -2,7 +2,7 @@ import boto3
 import os
 from bs4 import BeautifulSoup
 from datetime import datetime
-
+#yy
 s3 = boto3.client("s3")
 
 def process_headlines(event, context):
@@ -47,8 +47,10 @@ def process_headlines(event, context):
                 enlace = article.get("href")
                 if enlace and not enlace.startswith("http"):
                     enlace = "https://www.eltiempo.com" + enlace
+                # Extraer categoría desde el enlace
+                categoria = enlace.split("/")[1] if "/" in enlace else "General"
                 if titulo and enlace:
-                    noticias.append(["General", titulo, enlace])
+                    noticias.append([categoria.capitalize(), titulo, enlace])
 
         elif nombre_periodico == "publimetro":
             for link in soup.select("a[href]"):
@@ -57,7 +59,8 @@ def process_headlines(event, context):
                 if enlace and titulo and "/" in enlace and len(titulo) > 40:
                     if not enlace.startswith("http"):
                         enlace = "https://www.publimetro.co" + enlace
-                    noticias.append(["General", titulo, enlace])
+                    categoria = enlace.split("/")[3] if enlace.count("/") > 3 else "General"
+                    noticias.append([categoria.capitalize(), titulo, enlace])
 
         # Crear CSV en memoria
         csv = "categoria,titulo,enlace\n"
