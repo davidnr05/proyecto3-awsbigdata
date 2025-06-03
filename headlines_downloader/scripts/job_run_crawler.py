@@ -3,7 +3,7 @@ import boto3
 def run_crawler(event=None, context=None):
     glue = boto3.client("glue")
     
-    crawler_name = "crawler_headlines_final"  # Debe coincidir con el que creaste
+    crawler_name = "crawler_headlines_final"  
 
     try:
         glue.start_crawler(Name=crawler_name)
