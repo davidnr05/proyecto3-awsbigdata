@@ -30,7 +30,7 @@ jobs:
           AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
-          aws s3 cp headlines_downloader/scripts/job_scrape_html.py s3://headlinesjune/scripts/job_scrape_html.py
-          aws s3 cp headlines_downloader/scripts/job_process_html.py s3://headlinesjune/scripts/job_process_html.py
-          aws s3 cp headlines_downloader/scripts/job_run_crawler.py s3://headlinesjune/scripts/job_run_crawler.py
+          aws s3 cp headlines_downloader/scripts/job_scrape_html.py s3://headlinesjune/scripts/job_scrape_html.py --acl bucket-owner-full-control
+          aws s3 cp headlines_downloader/scripts/job_process_html.py s3://headlinesjune/scripts/job_process_html.py --acl bucket-owner-full-control
+          aws s3 cp headlines_downloader/scripts/job_run_crawler.py s3://headlinesjune/scripts/job_run_crawler.py --acl bucket-owner-full-control
 
