@@ -2,7 +2,7 @@ import requests
 import boto3
 from bs4 import BeautifulSoup
 from datetime import datetime
-#rrr
+#rrrr
 def scrape_headlines(event=None, context=None):
     urls = {
         "eltiempo": "https://www.eltiempo.com/",
