@@ -65,7 +65,7 @@ def scrape_headlines(event=None, context=None):
                         enlace = "https://www.publimetro.co" + enlace
                     noticias.append(["General", titulo, enlace])
 
-        # 4. Crear CSV en memoria
+        # 4. Crear CSV en memoria a
         csv = "categoria,titulo,enlace\n"
         for row in noticias:
             csv += ",".join(f'"{r}"' for r in row) + "\n"
