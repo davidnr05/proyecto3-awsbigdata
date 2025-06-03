@@ -29,7 +29,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
-          aws s3 cp scripts/job_scrape_html.py s3://headlinesjune/scripts/job_scrape_html.py
-          aws s3 cp scripts/job_process_html.py s3://headlinesjune/scripts/job_process_html.py
-          aws s3 cp scripts/job_run_crawler.py s3://headlinesjune/scripts/job_run_crawler.py
+          aws s3 cp headlines_downloader/scripts/job_scrape_html.py s3://headlinesjune/scripts/job_scrape_html.py
+          aws s3 cp headlines_downloader/scripts/job_process_html.py s3://headlinesjune/scripts/job_process_html.py
+          aws s3 cp headlines_downloader/scripts/job_run_crawler.py s3://headlinesjune/scripts/job_run_crawler.py
 
