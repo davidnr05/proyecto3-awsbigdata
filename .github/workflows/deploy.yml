@@ -1,42 +1,35 @@
-name: Deploy Zappa Lambda
+name: Deploy Glue Job Scripts
 
 on:
   push:
-    branches: [master]
+    branches: [ master ]
 
 jobs:
-  deploy:
+  deploy-scripts:
+    name: Upload Glue scripts to S3
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
 
-    - name: Install dependencies
-      run: |
-        python -m venv venv
-        source venv/bin/activate
-        pip install -r requirements.txt
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli
 
-    - name: Run unit tests
-      run: |
-        source venv/bin/activate
-        python -m unittest discover -s tests
-
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
-
-    - name: Deploy with Zappa
-      run: |
-        source venv/bin/activate
-        zappa update dev
+      - name: Upload Glue job scripts to S3
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+        run: |
+          aws s3 cp scripts/job_scrape_html.py s3://headlinesjune/scripts/job_scrape_html.py
+          aws s3 cp scripts/job_process_html.py s3://headlinesjune/scripts/job_process_html.py
+          aws s3 cp scripts/job_run_crawler.py s3://headlinesjune/scripts/job_run_crawler.py
 
